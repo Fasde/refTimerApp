@@ -43,11 +43,11 @@
             android:layout_marginHorizontal="30dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/pauseStartButton"
+                android:id="@+id/startButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:clickable="true"
-                android:src="@android:drawable/ic_media_pause" />
+                android:src="@android:drawable/ic_media_play" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/secondHalfButton"
@@ -55,7 +55,7 @@
                 android:layout_height="40dp"
                 android:clickable="true"
                 android:layout_marginHorizontal="10dp"
-                android:layout_toEndOf="@id/pauseStartButton"
+                android:layout_toEndOf="@id/startButton"
                 android:src="@android:drawable/ic_media_next" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

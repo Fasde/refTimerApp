@@ -1,12 +1,11 @@
 package com.fasde.reftimerapp
 
 import android.os.Bundle
-import android.os.SystemClock
 import android.support.wearable.activity.WearableActivity
-import android.view.View
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
@@ -19,40 +18,61 @@ class RefTimer : WearableActivity() {
         // Set all the Elements form the View
         val mainTime : TextView = findViewById(R.id.mainTime)
         val overTime : TextView = findViewById(R.id.overTime)
-        val pauseStartButton : FloatingActionButton = findViewById(R.id.pauseStartButton)
+        val startButton : FloatingActionButton = findViewById(R.id.startButton)
         val secondHalfButton : FloatingActionButton = findViewById(R.id.secondHalfButton)
         val gameRevertButton : FloatingActionButton = findViewById(R.id.gameRevertButton)
-        var ticking = false
-        var mainTimer : Time
-        var overTimer : Time
+        var mainTimer = Time()
+        var overTimer = Time()
+        var firstHalf = GlobalScope.launch {  }
+        var secondHalf = GlobalScope.launch {  }
         // Enables Always-on
         setAmbientEnabled()
 
-        mainTime.text = getString(R.string.startTime)
-        overTime.text = getString(R.string.startTime)
-
-        pauseStartButton.setOnClickListener{
-            if(ticking){
-                // stop the timer
-            } else {
-                // start the Timer
+        startButton.setOnClickListener{
+            // start the timer
+            firstHalf.cancel()
+            firstHalf = GlobalScope.launch {
+                while(true){
+                    mainTimer.addOneSec()
+                    mainTime.text = mainTimer.toString()
+                    if(mainTimer.minutes >= 45){
+                        break
+                    }
+                }
+                while (true){
+                    overTimer.addOneSec()
+                    overTime.text = overTimer.toString()
+                }
             }
-            ticking = !ticking
         }
         secondHalfButton.setOnClickListener {
-            mainTime.text = getString(R.string.halfTime)
-            overTime.text = getString(R.string.startTime)
-            // restart the Timer
+            firstHalf.cancel()
+            secondHalf.cancel()
+            mainTime.text = mainTimer.secondHalf().toString()
+            overTime.text = overTimer.reset().toString()
+            secondHalf = GlobalScope.launch {
+                while(true){
+                    mainTimer.addOneSec()
+                    mainTime.text = mainTimer.toString()
+                    if(mainTimer.minutes >= 90){
+                        break
+                    }
+                }
+                while(true){
+                    overTimer.addOneSec()
+                    overTime.text.toString()
+                }
+            }
         }
 
         gameRevertButton.setOnClickListener {
-            mainTime.text = getString(R.string.startTime)
-            overTime.text = getString(R.string.startTime)
+            firstHalf.cancel()
+            secondHalf.cancel()
+            mainTime.text = mainTimer.reset().toString()
+            overTime.text = overTimer.reset().toString()
             // Stop the ticking Timer
         }
 
-        GlobalScope.launch {
-            val startMillis = SystemClock.currentThreadTimeMillis()
-        }
+
     }
 }

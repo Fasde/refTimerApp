@@ -12,4 +12,14 @@ class Time(var minutes : Int = 0, var seconds : Int = 0){
             seconds++
         }
     }
+
+    fun reset(){
+        minutes = 0
+        seconds = 0
+    }
+
+    fun secondHalf(){
+        minutes = 45
+        seconds = 0
+    }
 }
