@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:padding="@dimen/box_inset_layout_padding"
+    tools:context=".RefTimer"
+    tools:deviceIds="wear"
+    android:theme="@style/Theme.AppCompat">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/inner_frame_layout_padding">
+
+        <TextView
+            android:id="@+id/mainTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="70sp"
+            android:textAlignment="center"
+            android:text="@string/startTime"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/overTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="80dp"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            android:text="@string/startTime"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_marginHorizontal="30dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/pauseStartButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:src="@android:drawable/ic_media_pause" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/secondHalfButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:layout_marginHorizontal="10dp"
+                android:layout_toEndOf="@id/pauseStartButton"
+                android:src="@android:drawable/ic_media_next" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/gameRevertButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:layout_toEndOf="@id/secondHalfButton"
+                android:src="@android:drawable/ic_media_rew" />
+
+        </RelativeLayout>
+    </FrameLayout>
+</androidx.wear.widget.BoxInsetLayout>

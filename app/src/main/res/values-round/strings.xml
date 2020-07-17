@@ -1,4 +1,4 @@
 <resources>
     <string name="hello_world">Hello Round World!</string>
-    <string name="_00_00">00:00</string>
+    <string name="startTime">00:00</string>
 </resources>
