@@ -1,46 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey"
+    android:background="@color/dark_green"
     android:padding="@dimen/box_inset_layout_padding"
+    android:theme="@style/Theme.AppCompat"
     tools:context=".RefTimer"
-    tools:deviceIds="wear"
-    android:theme="@style/Theme.AppCompat">
+    tools:deviceIds="wear">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/inner_frame_layout_padding">
 
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/back_frame"
+            android:clickable="false"
+            android:focusable="false"></FrameLayout>
+
         <TextView
             android:id="@+id/mainTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:ems="10"
-            android:textSize="70sp"
-            android:textAlignment="center"
             android:text="@string/startTime"
-            android:layout_marginTop="15dp"
-            />
+            android:textAlignment="center"
+            android:textColor="@color/really_bright_orange"
+            android:textSize="65sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/overTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="85dp"
             android:ems="10"
-            android:layout_marginTop="80dp"
-            android:textSize="40sp"
+            android:text="@string/startTime"
             android:textAlignment="center"
-            android:text="@string/startTime"/>
+            android:textColor="@color/really_bright_orange"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
-            android:layout_marginHorizontal="30dp">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="135dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/startButton"
@@ -53,19 +66,29 @@
                 android:id="@+id/secondHalfButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:clickable="true"
                 android:layout_marginHorizontal="10dp"
                 android:layout_toEndOf="@id/startButton"
+                android:clickable="true"
                 android:src="@android:drawable/ic_media_next" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/gameRevertButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:clickable="true"
                 android:layout_toEndOf="@id/secondHalfButton"
+                android:clickable="true"
                 android:src="@android:drawable/ic_media_rew" />
-
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/halfTimeIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:textColor="@color/really_bright_orange"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
     </FrameLayout>
 </androidx.wear.widget.BoxInsetLayout>
